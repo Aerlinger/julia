@@ -360,7 +360,7 @@ this implied type signature:
 .. doctest::
 
     julia> Foo((), 23.5, 1)
-    ERROR: no method Foo((), Float64, Int64)
+    ERROR: no method found with type signature Foo((), Float64, Int64)
 
 You may find a list of field names using the ``names`` function.
 
@@ -745,10 +745,10 @@ each field:
 .. doctest::
 
     julia> Point{Float64}(1.0)
-    ERROR: no method Point{Float64}(Float64)
+    ERROR: no method found with type signature Point{Float64}(Float64)
 
     julia> Point{Float64}(1.0,2.0,3.0)
-    ERROR: no method Point{Float64}(Float64, Float64, Float64)
+    ERROR: no method found with type signature Point{Float64}(Float64, Float64, Float64)
 
 The provided arguments need to match the field types exactly, in this
 case ``(Float64,Float64)``, as with all composite type default
@@ -781,7 +781,7 @@ isn't the case, the constructor will fail with a no method error:
 .. doctest::
 
     julia> Point(1,2.5)
-    ERROR: no method Point{T}(Int64, Float64)
+    ERROR: no method found with type signature Point{T}(Int64, Float64)
 
 Constructor methods to appropriately handle such mixed cases can be
 defined, but that will not be discussed until later on in
@@ -1165,10 +1165,10 @@ If you apply ``super`` to other type objects (or non-type objects), a
 .. doctest::
 
     julia> super(Union(Float64,Int64))
-    ERROR: no method super(Type{Union(Float64,Int64)})
+    ERROR: no method found with type signature super(Type{Union(Float64,Int64)})
 
     julia> super(None)
-    ERROR: no method super(Type{None})
+    ERROR: no method found with type signature super(Type{None})
 
     julia> super((Float64,Int64))
-    ERROR: no method super(Type{(Float64,Int64)})
+    ERROR: no method found with type signature super(Type{(Float64,Int64)})

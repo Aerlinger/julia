@@ -97,7 +97,7 @@ requested conversion:
 .. doctest::
 
     julia> convert(FloatingPoint, "foo")
-    ERROR: no method convert(Type{FloatingPoint}, ASCIIString)
+    ERROR: no method found with type signature convert(Type{FloatingPoint}, ASCIIString)
      in convert at base.jl:11
 
 Some languages consider parsing strings as numbers or formatting

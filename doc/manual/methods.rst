@@ -94,16 +94,16 @@ error:
 .. doctest::
 
     julia> f(2.0, 3)
-    ERROR: no method f(Float64, Int64)
+    ERROR: no method found with type signature f(Float64, Int64)
 
     julia> f(float32(2.0), 3.0)
-    ERROR: no method f(Float32, Float64)
+    ERROR: no method found with type signature f(Float32, Float64)
 
     julia> f(2.0, "3.0")
-    ERROR: no method f(Float64, ASCIIString)
+    ERROR: no method found with type signature f(Float64, ASCIIString)
 
     julia> f("2.0", "3.0")
-    ERROR: no method f(ASCIIString, ASCIIString)
+    ERROR: no method found with type signature f(ASCIIString, ASCIIString)
 
 As you can see, the arguments must be precisely of type ``Float64``.
 Other numeric types, such as integers or 32-bit floating-point values,
@@ -168,10 +168,10 @@ function ``f`` remains undefined, and applying it will still result in a
 .. doctest::
 
     julia> f("foo", 3)
-    ERROR: no method f(ASCIIString, Int64)
+    ERROR: no method found with type signature f(ASCIIString, Int64)
 
     julia> f()
-    ERROR: no method f()
+    ERROR: no method found with type signature f()
 
 You can easily see which methods exist for a function by entering the
 function object itself in an interactive session:
@@ -438,7 +438,7 @@ signature:
      4
 
     julia> myappend([1,2,3],2.5)
-    ERROR: no method myappend(Array{Int64,1}, Float64)
+    ERROR: no method found with type signature myappend(Array{Int64,1}, Float64)
 
     julia> myappend([1.0,2.0,3.0],4.0)
     4-element Array{Float64,1}:
@@ -448,7 +448,7 @@ signature:
      4.0
 
     julia> myappend([1.0,2.0,3.0],4)
-    ERROR: no method myappend(Array{Float64,1}, Int64)
+    ERROR: no method found with type signature myappend(Array{Float64,1}, Int64)
 
 As you can see, the type of the appended element must match the element
 type of the vector it is appended to, or a "no method" error is raised.

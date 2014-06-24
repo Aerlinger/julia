@@ -321,7 +321,7 @@ types of the arguments given to the constructor. Here are some examples:
     Point{Float64}(1.0,2.5)
 
     julia> Point(1,2.5)
-    ERROR: no method Point{T<:Real}(Int64, Float64)
+    ERROR: no method found with type signature Point{T<:Real}(Int64, Float64)
 
     ## explicit T ##
 
@@ -329,13 +329,13 @@ types of the arguments given to the constructor. Here are some examples:
     Point{Int64}(1,2)
 
     julia> Point{Int64}(1.0,2.5)
-    ERROR: no method Point{Int64}(Float64, Float64)
+    ERROR: no method found with type signature Point{Int64}(Float64, Float64)
 
     julia> Point{Float64}(1.0,2.5)
     Point{Float64}(1.0,2.5)
 
     julia> Point{Float64}(1,2)
-    ERROR: no method Point{Float64}(Int64, Int64)
+    ERROR: no method found with type signature Point{Float64}(Int64, Int64)
 
 As you can see, for constructor calls with explicit type parameters, the
 arguments must match that specific type: ``Point{Int64}(1,2)`` works,
@@ -412,7 +412,7 @@ However, other similar calls still don't work:
 .. doctest::
 
     julia> Point(1.5,2)
-    ERROR: no method Point{T<:Real}(Float64, Int64)
+    ERROR: no method found with type signature Point{T<:Real}(Float64, Int64)
 
 For a much more general way of making all such calls work sensibly, see
 :ref:`man-conversion-and-promotion`. At the risk

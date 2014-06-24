@@ -642,7 +642,7 @@ To prevent this, we can add an inner constructor::
     MyBetterContainer{Float64,Range1{Float64}}
 
     julia> b = MyBetterContainer{Int64, Range1{Float64}}(1.3:5);
-    ERROR: no method MyBetterContainer(Range1{Float64},)
+    ERROR: no method found with type signature MyBetterContainer(Range1{Float64},)
 
 The inner constructor requires that the element type of ``A`` be ``T``.
 
