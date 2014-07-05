@@ -31,6 +31,7 @@ jl_value_t *jl_interpret_toplevel_expr_with(jl_value_t *e,
     return eval(e, locals, nl);
 }
 
+// Evaluate the head of the syntax tree
 jl_value_t *jl_interpret_toplevel_expr_in(jl_module_t *m, jl_value_t *e,
                                           jl_value_t **locals, size_t nl)
 {
@@ -52,6 +53,7 @@ jl_value_t *jl_interpret_toplevel_expr_in(jl_module_t *m, jl_value_t *e,
     return v;
 }
 
+// Calls a function with **args (jl_value_t), nargs (list of arguments), jl_value_t (local variables), (nl?)
 static jl_value_t *do_call(jl_function_t *f, jl_value_t **args, size_t nargs,
                            jl_value_t **locals, size_t nl)
 {
@@ -67,6 +69,7 @@ static jl_value_t *do_call(jl_function_t *f, jl_value_t **args, size_t nargs,
     return result;
 }
 
+// jl_module_t is a module type
 jl_value_t *jl_eval_global_var(jl_module_t *m, jl_sym_t *e)
 {
     jl_value_t *v = jl_get_global(m, e);
@@ -98,12 +101,14 @@ static int equiv_type(jl_datatype_t *dta, jl_datatype_t *dtb)
             jl_egal((jl_value_t*)dta->parameters, (jl_value_t*)dtb->parameters));
 }
 
+// This is where the redefinition error occurs
 static void check_can_assign_type(jl_binding_t *b)
 {
     if (b->constp && b->value != NULL && !jl_is_datatype(b->value))
         jl_errorf("invalid redefinition of constant %s", b->name->name);
 }
 
+// Evaluate an expresson
 static jl_value_t *eval(jl_value_t *e, jl_value_t **locals, size_t nl)
 {
     if (jl_is_symbol(e)) {
